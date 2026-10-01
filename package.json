@@ -1,0 +1,20 @@
+{
+  "name": "projectsync-ai",
+  "version": "1.0.0",
+  "description": "ProjectSync AI - An Intelligent Student Project Collaboration and Progress Monitoring System",
+  "main": "backend/src/server.js",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "server": "node backend/src/server.js",
+    "seed": "node backend/src/seed.js"
+  },
+  "keywords": [
+    "academic",
+    "project-management",
+    "ai-insights",
+    "collaboration",
+    "student-monitoring"
+  ],
+  "author": "",
+  "license": "MIT"
+}

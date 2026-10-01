@@ -1,0 +1,130 @@
+{
+  "info": {
+    "_postman_id": "projectsync-ai-collection-2026",
+    "name": "ProjectSync AI REST API Collection",
+    "description": "Postman API Collection for ProjectSync AI - Student Project Collaboration & Progress Monitoring System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000/api" },
+    { "key": "token", "value": "" },
+    { "key": "projectId", "value": "" },
+    { "key": "teamId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alex Johnson\",\n  \"email\": \"alex@student.edu\",\n  \"password\": \"student123\",\n  \"role\": \"STUDENT\",\n  \"studentId\": \"STU202601\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/register", "host": ["{{baseUrl}}"], "path": ["auth", "register"] }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alex@student.edu\",\n  \"password\": \"student123\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/auth/login", "host": ["{{baseUrl}}"], "path": ["auth", "login"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "Create Team",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Team Alpha\",\n  \"description\": \"Capstone Project Team\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/teams", "host": ["{{baseUrl}}"], "path": ["teams"] }
+          }
+        },
+        {
+          "name": "Get User Teams",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/teams", "host": ["{{baseUrl}}"], "path": ["teams"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Create Project",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{token}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Student Management Portal\",\n  \"team\": \"{{teamId}}\",\n  \"deadline\": \"2026-10-31\"\n}"
+            },
+            "url": { "raw": "{{baseUrl}}/projects", "host": ["{{baseUrl}}"], "path": ["projects"] }
+          }
+        },
+        {
+          "name": "Get Projects",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/projects", "host": ["{{baseUrl}}"], "path": ["projects"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Progress & AI",
+      "item": [
+        {
+          "name": "Get Progress Summary",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/projects/{{projectId}}/progress", "host": ["{{baseUrl}}"], "path": ["projects", "{{projectId}}", "progress"] }
+          }
+        },
+        {
+          "name": "Get Member Contributions",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/projects/{{projectId}}/contributions", "host": ["{{baseUrl}}"], "path": ["projects", "{{projectId}}", "contributions"] }
+          }
+        },
+        {
+          "name": "Trigger AI Analysis",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": { "raw": "{{baseUrl}}/projects/{{projectId}}/ai-analyze", "host": ["{{baseUrl}}"], "path": ["projects", "{{projectId}}", "ai-analyze"] }
+          }
+        }
+      ]
+    }
+  ]
+}
