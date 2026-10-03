@@ -3,6 +3,10 @@
     {
       "source": "/api/:path*",
       "destination": "https://projectsync-ai-o6h5.onrender.com/api/:path*"
+    },
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/"
     }
   ]
 }
